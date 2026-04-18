@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
