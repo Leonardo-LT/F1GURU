@@ -2,7 +2,7 @@ import { fApp } from "../app";
 import { getFirestore, collection, getDocs, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { numberDriverMapping, numberTeamMapping } from "../utility/mapping";
-import { createResource, Show, For } from "solid-js";
+import { createResource, Show, For, Suspense } from "solid-js";
 import {
   getDriverFromFullName,
   getDriversFromTeamName,
@@ -21,6 +21,7 @@ import getTeamPosition from "../utility/getTeamPosition";
 const db = getFirestore(fApp);
 
 const fetchDriverFavourites = async () => {
+  await getAuth().authStateReady();
   const user = getAuth().currentUser;
   if (user) {
     const res = await getDocs(
@@ -36,6 +37,7 @@ const fetchDriverFavourites = async () => {
 };
 
 const fetchConstructorrFavourites = async () => {
+  await getAuth().authStateReady();
   const user = getAuth().currentUser;
   if (user) {
     const res = await getDocs(
@@ -61,47 +63,45 @@ export default function Garage() {
           <i class="fa-solid fa-star text-primary"></i>
           FAVOURITE DRIVERS
         </div>
-        <Show
-          when={driverFavourites() && driverStandings()}
-          fallback={
-            <div class="widget p-4 text-center text-gray-500 font-semibold italic">
-              Drivers data currently unavailable
-            </div>
-          }
+
+        <Suspense 
+          fallback={<div class="widget animate-pulse text-gray-400">Loading drivers data...</div>}
         >
-          <div class="w-3/4">
-            <div class="flex flex-row gap-8 overflow-x-auto snap-x snap-mandatory py-4 px-2 [&::-webkit-scrollbar]:hidden scroll-smooth">
-              <For each={driverFavourites()}>
-                {(item, index) => {
-                  let standing =
-                    getDriverPosition(item.driver_number, driverStandings()) ||
-                    {};
-                  return (
-                    <FavDriverCard
-                      full_name={item.full_name}
-                      team_name={item.team_name}
-                      driver_number={item.driver_number}
-                      headshot_url={item.headshot_url}
-                      position={standing["position_current"] ?? "-"}
-                      points_current={standing["points_current"] ?? 0}
-                      points_start={standing["points_start"] ?? 0}
-                    />
-                  );
-                }}
-              </For>
+            <div class="w-3/4">
+              <div class="flex flex-row gap-8 overflow-x-auto snap-x snap-mandatory py-4 px-2 [&::-webkit-scrollbar]:hidden scroll-smooth">
+                <For each={driverFavourites()}>
+                  {(item, index) => {
+                    let standing =
+                      getDriverPosition(
+                        item.driver_number,
+                        driverStandings(),
+                      ) || {};
+                    return (
+                      <FavDriverCard
+                        full_name={item.full_name}
+                        team_name={item.team_name}
+                        driver_number={item.driver_number}
+                        headshot_url={item.headshot_url}
+                        position={standing["position_current"] ?? "-"}
+                        points_current={standing["points_current"] ?? 0}
+                        points_start={standing["points_start"] ?? 0}
+                      />
+                    );
+                  }}
+                </For>
+              </div>
             </div>
-          </div>
-        </Show>
+          </Suspense>
 
         <div class="pt-8 pb-6 font-bold text-3xl flex gap-4">
           <i class="fa-solid fa-star text-primary"></i>
           FAVOURITE CONSTRUCTORS
         </div>
-        <Show
-          when={constructorFavourites() && constructorStandings()}
+
+        <Suspense
           fallback={
-            <div class="widget p-4 text-center text-gray-500 font-semibold italic">
-              Team data currently unavailable
+            <div class="widget animate-pulse text-gray-400">
+              Loading drivers data
             </div>
           }
         >
@@ -140,7 +140,7 @@ export default function Garage() {
                         nextStanding.points_current - standing.points_current;
                       gapLabel = `Gap to P${nextPosition}:`;
                     }
-                  } else if (constructorStandings().length > 1) {
+                  } else if (constructorStandings() && constructorStandings().length > 1) {
                     const nextStanding = constructorStandings().find(
                       (s) => s.position_current === 2,
                     );
@@ -168,7 +168,7 @@ export default function Garage() {
               </For>
             </div>
           </div>
-        </Show>
+        </Suspense>
       </div>
     </>
   );

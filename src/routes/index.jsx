@@ -19,15 +19,15 @@ export default function Home() {
 
   return (
     <>
-      <section class="h-full flex flex-col p-8">
-        <div class="mb-5 min-h-0">
-          <h1 class="text-4xl/10 font-bold sm:truncate sm:text-5xl sm:tracking-tight">
+      <section class="flex h-full min-h-0 flex-col p-8">
+        <div class="mb-5 max-h-fit">
+          <h1 class="text-4xl/10 font-bold sm:truncate sm:text-5xl">
             Grandprix of {nextGrandPrix.country}
           </h1>
           <p>{nextGrandPrix.circuit_name}</p>
         </div>
 
-        <div class="grid grid-cols-12 flex-1 auto-rows-auto gap-7 min-h-0 lg:grid-rows-[5fr_3fr]">
+        <div class="grid flex-1 min-h-0 grid-cols-12 auto-rows-auto gap-7 lg:grid-rows-[5fr_3fr]">
           <NextSession
             nextSession={nextSession}
             startTime={startTime}

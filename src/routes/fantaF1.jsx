@@ -129,7 +129,6 @@ const FantaF1 = () => {
       const newGroups = groups().filter((group) => group.id !== groupId);
       mutate(newGroups);
     } catch (error) {
-      console.error("Error quitting group:", error);
       alert("Error quitting group: " + error.message);
     }
   };

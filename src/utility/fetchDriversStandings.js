@@ -5,11 +5,12 @@ const fetchStandings = async () => {
     const data = await response.json();
     return Array.isArray(data) && data.length > 0 ? data : null;
   } catch(err) {
-    return null;
+    return [];
   }
 }
 
 const getDriverPosition = (driverNumber, standings) => {
+  if (!Array.isArray(standings)) return null 
   for (let standing of standings) {
     if (standing["driver_number"] == driverNumber) return standing
   }

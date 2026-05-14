@@ -8,7 +8,7 @@ export default function Nav(props) {
       ? "border-sky-600"
       : "border-transparent hover:border-sky-600";
   return (
-    <nav class="fixed top-0 left-0 w-screen h-[5vh] bg-bg border-b-2 border-widget-border flex justify-center z-10">
+    <nav class="overflow-x-auto fixed top-0 left-0 w-screen h-auto bg-bg border-b-2 border-widget-border flex justify-center z-10">
       <div class="w-full lg:w-[80vw] h-full flex items-center justify-center text-white font-semibold text-l">
         <div class="flex flex-row items-center justify-center flex-1 gap-10">
           <A href="/" class="nav-link" activeClass="nav-link-active" end>
@@ -34,7 +34,10 @@ export default function Nav(props) {
           </A>
         </Show>
         <Show when={props.user()}>
-          <div onClick={[props.logOut, props.auth]} class="nav-link cursor-pointer">
+          <div
+            onClick={[props.logOut, props.auth]}
+            class="nav-link cursor-pointer"
+          >
             <i class="fa-solid fa-user mr-1.5"></i>
             Log Out
           </div>

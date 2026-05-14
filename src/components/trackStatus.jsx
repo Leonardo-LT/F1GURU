@@ -20,7 +20,7 @@ const TrackStatus = (props) => {
 
   return (
     <>
-      <div class="widget flex flex-col items-center justify-center row-span-2 w-full h-full min-h-0 p-6">
+      <div class="widget flex flex-col items-center justify-center row-span-2 w-full flex-1 min-h-0 p-6">
         <Show
           when={trackStatus()}
           fallback={

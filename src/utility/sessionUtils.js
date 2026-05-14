@@ -1,10 +1,6 @@
 import calendarData from "../calendar.json";
 import askPermission from "./askPermission";
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
@@ -62,6 +58,11 @@ export const getNextSession = () => {
     if (endDate >= currentDate) return sessions[i];
   }
   return null;
+};
+
+export const getCurrentGrandPrixImage = () => {
+  const grandPrix = getNextGrandPrix();
+  return grandPrix ? grandPrix.circuit_image : null;
 };
 
 export const setNotify = (session, start) => {

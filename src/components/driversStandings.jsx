@@ -35,7 +35,7 @@ const DriversStandings = () => {
 
   return (
     <>
-      <div class="grid grid-cols-7 justify-between gap-6 font-semibold m-4">
+      <div class="grid grid-cols-7 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
         <p class="col-span-1 text-center">STANDING</p>
         <p class="col-span-2 text-center">DRIVER</p>
         <p class="col-span-1 text-center">TEAM</p>
@@ -44,31 +44,30 @@ const DriversStandings = () => {
         <p class="col-span-1 text-center">GRAPH</p>
         <p class="col-span-1 text-center">FOLLOW</p>
       </div>
+
       <Suspense>
-        <Show when={standings() && favourites()}>
-          <For each={standings()}>
-            {(item, index) => {
-              const driver = getDriverFromNumber(item.driver_number);
-              const fav =
-                favourites().length != 0
-                  ? isFavourite(favourites, driver.full_name)
-                  : false;
-              console.log(fav);
+        <For each={standings()}>
+          {(item, index) => {
+            const driver = getDriverFromNumber(item.driver_number);
+            const fav =
+              (favourites() && favourites().length != 0)
+                ? isFavourite(favourites, driver.full_name)
+                : false;
+
               return (
-                <StandingsCard
-                  firstName={driver.full_name}
-                  standing={index() + 1}
-                  secondName={driver.team_name}
-                  points={item.points_current}
-                  img={driver.headshot_url}
-                  team_color={driver.team_colour}
-                  type={true}
-                  isFav={fav}
-                />
-              );
-            }}
-          </For>
-        </Show>
+              <StandingsCard
+                firstName={driver.full_name}
+                standing={index() + 1}
+                secondName={driver.team_name}
+                points={item.points_current}
+                img={driver.headshot_url}
+                team_color={driver.team_colour}
+                type={true}
+                isFav={fav}
+              />
+            );
+          }}
+        </For>
       </Suspense>
     </>
   );

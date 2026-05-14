@@ -27,7 +27,7 @@ const WeatherWidgets = (props) => {
 
   return (
     <>
-      <div class="grid grid-cols-2 gap-3 grid-rows-3 row-span-1 items-stretch w-full h-full min-h-0">
+      <div class="grid grid-cols-2 gap-3 grid-rows-3 row-span-1 items-stretch w-full flex-1 min-h-0">
         <Show
           when={weatherData()}
           fallback={

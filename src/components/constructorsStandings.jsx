@@ -34,7 +34,7 @@ const ConstructorStandings = () => {
 
   return (
     <>
-      <div class="grid grid-cols-7 justify-between gap-6 font-semibold m-4">
+      <div class="grid grid-cols-7 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
         <p class="col-span-1 text-center">STANDING</p>
         <p class="col-span-2 text-center">TEAM</p>
         <p class="col-span-1 text-center">DRIVERS</p>

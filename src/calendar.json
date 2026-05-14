@@ -4,6 +4,7 @@
     "circuit_name": "Melbourne",
     "country": "Australia",
     "city": "Melbourne",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Albert_Park_Circuit_2021.svg/1024px-Albert_Park_Circuit_2021.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-03-06T01:30:00+00:00", "end": "2026-03-06T02:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-03-06T05:00:00+00:00", "end": "2026-03-06T06:00:00+00:00" },
@@ -17,6 +18,7 @@
     "circuit_name": "Shanghai",
     "country": "China",
     "city": "Shanghai",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Shanghai_International_Racing_Circuit_track_map.svg/1024px-Shanghai_International_Racing_Circuit_track_map.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-03-13T03:30:00+00:00", "end": "2026-03-13T04:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-03-13T07:30:00+00:00", "end": "2026-03-13T08:14:00+00:00" },
@@ -30,6 +32,7 @@
     "circuit_name": "Suzuka",
     "country": "Japan",
     "city": "Suzuka",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Suzuka_circuit_map--2005.svg/1024px-Suzuka_circuit_map--2005.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-03-27T02:30:00+00:00", "end": "2026-03-27T03:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-03-27T06:00:00+00:00", "end": "2026-03-27T07:00:00+00:00" },
@@ -43,6 +46,7 @@
     "circuit_name": "Sakhir",
     "country": "Bahrain",
     "city": "Sakhir",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Bahrain_International_Circuit--Grand_Prix_Layout.svg/1024px-Bahrain_International_Circuit--Grand_Prix_Layout.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-04-10T11:30:00+00:00", "end": "2026-04-10T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-04-10T15:00:00+00:00", "end": "2026-04-10T16:00:00+00:00" },
@@ -56,6 +60,7 @@
     "circuit_name": "Jeddah",
     "country": "Saudi Arabia",
     "city": "Jeddah",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jeddah_Street_Circuit_2021_layout_map.svg/1024px-Jeddah_Street_Circuit_2021_layout_map.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-04-17T13:30:00+00:00", "end": "2026-04-17T14:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-04-17T17:00:00+00:00", "end": "2026-04-17T18:00:00+00:00" },
@@ -69,6 +74,7 @@
     "circuit_name": "Miami",
     "country": "United States",
     "city": "Miami Gardens",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Miami_International_Autodrome.svg/1024px-Miami_International_Autodrome.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-05-01T16:30:00+00:00", "end": "2026-05-01T17:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-05-01T20:30:00+00:00", "end": "2026-05-01T21:14:00+00:00" },
@@ -82,6 +88,7 @@
     "circuit_name": "Montreal",
     "country": "Canada",
     "city": "Montréal",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Circuit_Gilles_Villeneuve.svg/1024px-Circuit_Gilles_Villeneuve.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-05-22T16:30:00+00:00", "end": "2026-05-22T17:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-05-22T20:30:00+00:00", "end": "2026-05-22T21:14:00+00:00" },
@@ -95,6 +102,7 @@
     "circuit_name": "Monte Carlo",
     "country": "Monaco",
     "city": "Monte Carlo",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Monte_Carlo_Formula_1_Circuit_%282003-2006%29.svg/1024px-Monte_Carlo_Formula_1_Circuit_%282003-2006%29.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-06-05T11:30:00+00:00", "end": "2026-06-05T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-06-05T15:00:00+00:00", "end": "2026-06-05T16:00:00+00:00" },
@@ -108,6 +116,7 @@
     "circuit_name": "Catalunya",
     "country": "Spain",
     "city": "Barcelona",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Circuit_de_Catalunya.svg/1024px-Circuit_de_Catalunya.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-06-12T11:30:00+00:00", "end": "2026-06-12T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-06-12T15:00:00+00:00", "end": "2026-06-12T16:00:00+00:00" },
@@ -121,6 +130,7 @@
     "circuit_name": "Spielberg",
     "country": "Austria",
     "city": "Spielberg",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Red_Bull_Ring.svg/1024px-Red_Bull_Ring.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-06-26T11:30:00+00:00", "end": "2026-06-26T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-06-26T15:00:00+00:00", "end": "2026-06-26T16:00:00+00:00" },
@@ -134,6 +144,7 @@
     "circuit_name": "Silverstone",
     "country": "United Kingdom",
     "city": "Silverstone",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Silverstone_Circuit_2020.png/1024px-Silverstone_Circuit_2020.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-07-03T11:30:00+00:00", "end": "2026-07-03T12:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-07-03T15:30:00+00:00", "end": "2026-07-03T16:14:00+00:00" },
@@ -147,6 +158,7 @@
     "circuit_name": "Spa-Francorchamps",
     "country": "Belgium",
     "city": "Spa-Francorchamps",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Spa-Francorchamps_of_Belgium.svg/1024px-Spa-Francorchamps_of_Belgium.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-07-17T11:30:00+00:00", "end": "2026-07-17T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-07-17T15:00:00+00:00", "end": "2026-07-17T16:00:00+00:00" },
@@ -160,6 +172,7 @@
     "circuit_name": "Hungaroring",
     "country": "Hungary",
     "city": "Budapest",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Hungaroring_track_map.svg/1024px-Hungaroring_track_map.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-07-24T11:30:00+00:00", "end": "2026-07-24T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-07-24T15:00:00+00:00", "end": "2026-07-24T16:00:00+00:00" },
@@ -173,6 +186,7 @@
     "circuit_name": "Zandvoort",
     "country": "Netherlands",
     "city": "Zandvoort",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Circuit_Zandvoort.svg/1024px-Circuit_Zandvoort.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-08-21T10:30:00+00:00", "end": "2026-08-21T11:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-08-21T14:30:00+00:00", "end": "2026-08-21T15:14:00+00:00" },
@@ -186,6 +200,7 @@
     "circuit_name": "Monza",
     "country": "Italy",
     "city": "Monza",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Monza_track_map.svg/1024px-Monza_track_map.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-09-04T10:30:00+00:00", "end": "2026-09-04T11:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-09-04T14:00:00+00:00", "end": "2026-09-04T15:00:00+00:00" },
@@ -199,6 +214,7 @@
     "circuit_name": "Madring",
     "country": "Spain",
     "city": "Madrid",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Madrid_F1_Circuit_Layout.png/1024px-Madrid_F1_Circuit_Layout.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-09-11T11:30:00+00:00", "end": "2026-09-11T12:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-09-11T15:00:00+00:00", "end": "2026-09-11T16:00:00+00:00" },
@@ -212,6 +228,7 @@
     "circuit_name": "Baku",
     "country": "Azerbaijan",
     "city": "Baku",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Baku_Formula_One_circuit_map.svg/1024px-Baku_Formula_One_circuit_map.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-09-24T08:30:00+00:00", "end": "2026-09-24T09:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-09-24T12:00:00+00:00", "end": "2026-09-24T13:00:00+00:00" },
@@ -225,6 +242,7 @@
     "circuit_name": "Singapore",
     "country": "Singapore",
     "city": "Marina Bay",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Marina_Bay_Street_Circuit.svg/1024px-Marina_Bay_Street_Circuit.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-10-09T08:30:00+00:00", "end": "2026-10-09T09:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-10-09T12:30:00+00:00", "end": "2026-10-09T13:14:00+00:00" },
@@ -238,6 +256,7 @@
     "circuit_name": "Austin",
     "country": "United States",
     "city": "Austin",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Austin_circuit.svg/1024px-Austin_circuit.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-10-23T17:30:00+00:00", "end": "2026-10-23T18:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-10-23T21:00:00+00:00", "end": "2026-10-23T22:00:00+00:00" },
@@ -251,6 +270,7 @@
     "circuit_name": "Mexico City",
     "country": "Mexico",
     "city": "Mexico City",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_2015.svg/1024px-Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_2015.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-10-30T18:30:00+00:00", "end": "2026-10-30T19:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-10-30T22:00:00+00:00", "end": "2026-10-30T23:00:00+00:00" },
@@ -264,6 +284,7 @@
     "circuit_name": "Interlagos",
     "country": "Brazil",
     "city": "São Paulo",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28Interlagos%29.svg/1024px-Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_%28Interlagos%29.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-11-06T15:30:00+00:00", "end": "2026-11-06T16:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-11-06T19:00:00+00:00", "end": "2026-11-06T20:00:00+00:00" },
@@ -277,6 +298,7 @@
     "circuit_name": "Las Vegas",
     "country": "United States",
     "city": "Las Vegas",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Las_Vegas_Strip_Circuit.svg/1024px-Las_Vegas_Strip_Circuit.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-11-20T00:30:00+00:00", "end": "2026-11-20T01:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-11-20T04:00:00+00:00", "end": "2026-11-20T05:00:00+00:00" },
@@ -290,6 +312,7 @@
     "circuit_name": "Lusail",
     "country": "Qatar",
     "city": "Lusail",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Losail_International_Circuit.svg/1024px-Losail_International_Circuit.svg.png",
     "sessions": [
       { "name": "Practice 1",        "start": "2026-11-27T13:30:00+00:00", "end": "2026-11-27T14:30:00+00:00" },
       { "name": "Sprint Qualifying", "start": "2026-11-27T17:00:00+00:00", "end": "2026-11-27T18:00:00+00:00" },
@@ -303,6 +326,7 @@
     "circuit_name": "Yas Marina Circuit",
     "country": "United Arab Emirates",
     "city": "Yas Marina",
+    "circuit_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Yas_Marina_Circuit_%282021%29.svg/1024px-Yas_Marina_Circuit_%282021%29.svg.png",
     "sessions": [
       { "name": "Practice 1", "start": "2026-12-04T09:30:00+00:00", "end": "2026-12-04T10:30:00+00:00" },
       { "name": "Practice 2", "start": "2026-12-04T13:00:00+00:00", "end": "2026-12-04T14:00:00+00:00" },
