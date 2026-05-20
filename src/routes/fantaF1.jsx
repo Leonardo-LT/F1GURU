@@ -144,7 +144,7 @@ const FantaF1 = () => {
       await batch.commit();
 
       const newGroups = groups().filter((group) => group.id !== groupId);
-      mutate(newGroups);
+      groupsMutate(newGroups);
     } catch (error) {
       alert("Error quitting group: " + error.message);
     }
@@ -330,7 +330,7 @@ const FantaF1 = () => {
           isCreate={isCreate}
           setShowModal={setShowModal}
           groups={groups}
-          addGroup={mutate}
+          addGroup={groupsMutate}
           refetch={groupsRefetch}
         />
       </Show>
