@@ -37,7 +37,7 @@ const FavDriverCard = (props) => {
             <p class="font-extrabold text-2xl sm:text-4xl">{props.position}</p>
           </div>
           <div class="widget flex-1">
-            <p class="font-bold text-gray-400">GAP</p>
+            <p class="font-bold text-gray-400">DIFF</p>
             <p class="font-extrabold text-2xl sm:text-4xl">
               {props.points_current - props.points_start}
             </p>
