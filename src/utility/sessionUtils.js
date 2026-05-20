@@ -13,7 +13,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 const sendSubscriptionToBackEnd = (subscription) => {
-  return fetch("http://localhost:3000/api/subscribe", {
+  return fetch("/api/subscribe", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,12 +65,12 @@ export const getCurrentGrandPrixImage = () => {
   return grandPrix ? grandPrix.circuit_image : null;
 };
 
-export const setNotify = (session, start) => {
+export const setNotify = async (session, start) => {
   if (!("serviceWorker" in navigator)) return;
   if (!("PushManager" in window)) return;
 
   const permission =
-    Notification.permission === "granted" ? askPermission() : true;
+    Notification.permission === "granted" ? true : await askPermission();
 
   if (permission) {
     return navigator.serviceWorker.ready
@@ -78,7 +78,7 @@ export const setNotify = (session, start) => {
         const subscribeOptions = {
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToUint8Array(
-            "BGY2X6vdlXKHdWEVOzw2TKkRMHqRpgeeVn7ag8cTi74Ug9aXROlGOw0mCKFSuzX1I2gURxn4zK7_pfzKOnbXA3k",
+            import.meta.env.VITE_VAPID_PUBLIC_KEY,
           ),
         };
         return registration.pushManager.subscribe(subscribeOptions);

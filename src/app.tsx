@@ -1,6 +1,6 @@
 import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense, createSignal, onMount } from "solid-js";
+import { Suspense, createSignal } from "solid-js";
 import Nav from "~/components/Nav";
 import { MetaProvider, Title, Link, Meta } from "@solidjs/meta";
 import "./index.css";
@@ -54,15 +54,6 @@ export default function App() {
 
   onAuthStateChanged(auth, () => {
     setUser(auth.currentUser);
-  });
-
-  onMount(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js", {
-        scope: "/",
-        type: import.meta.env.DEV ? "module" : "classic",
-      });
-    }
   });
 
   return (

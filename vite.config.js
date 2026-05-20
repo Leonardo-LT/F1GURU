@@ -8,10 +8,10 @@ export default defineConfig({
     tailwindcss(),
     solidStart({ ssr: false }),
     VitePWA({
-      registerType: "prompt",
+      registerType: "autoUpdate",
       includeAssets: ["favicon.ico"],
       strategies: "injectManifest",
-      srcDir: "/",
+      srcDir: "public",
       filename: "sw.js",
       injectManifest: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
@@ -29,18 +29,6 @@ export default defineConfig({
         display: "standalone",
         start_url: "/",
         scope: "/",
-        icons: [
-          {
-            src: "/logo192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/logo512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
       },
     }),
   ],

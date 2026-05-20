@@ -1,11 +1,12 @@
 import webpush from "web-push";
 import cron from "node-cron";
 
-webpush.setVapidDetails(
-  "mailto:example@yourdomain.org",
-  "BGY2X6vdlXKHdWEVOzw2TKkRMHqRpgeeVn7ag8cTi74Ug9aXROlGOw0mCKFSuzX1I2gURxn4zK7_pfzKOnbXA3k",
-  "RtFs-ODXkQryhXqqQjBQmlnwQ2g1iRXfFX2SsokMnmc",
-);
+const VAPID_SUBJECT =
+  process.env.VAPID_SUBJECT;
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
+
+webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 
 let savedSubscriptions = [];
 let scheduled = false;
