@@ -1,7 +1,4 @@
 import { createSignal, Show, For } from "solid-js";
-import ArrowRight from "lucide-solid/icons/arrow-right";
-import Trophy from "lucide-solid/icons/trophy";
-import PlayCircle from "lucide-solid/icons/play-circle";
 import getCodeFromNation from "../utility/getCodeFromNation";
 
 const CalendarCard = (props) => {
@@ -61,10 +58,10 @@ const CalendarCard = (props) => {
   return (
     <div
       onClick={() => setIsExpanded(!isExpanded())}
-      class={`relative flex flex-col rounded-2xl border bg-gray-900 overflow-hidden p-5 transition-all duration-300 cursor-pointer hover:border-primary/60
-        ${isExpanded() ? "md:border-primary" : "border-black min-h-75"}`}
+      class={`relative flex flex-col rounded-2xl border shadow-xl bg-widget-bg overflow-hidden p-5 transition-all duration-300 cursor-pointer hover:border-primary/60
+        ${isExpanded() ? "md:border-primary" : "border-widget-border min-h-75"}`}
     >
-      <div class="relative flex justify-end items-center gap-2 mb-4">
+      <div class="z-2 relative flex justify-end items-center gap-2 mb-4">
         <Show when={isSprint}>
           <span class="bg-primary text-white text-[10px] font-extrabold px-2 py-1 rounded tracking-widest shadow-sm">
             SPRINT
@@ -83,7 +80,7 @@ const CalendarCard = (props) => {
 
       <Show when={!isExpanded()}>
         <div
-          class={`absolute top-0 left-0 right-0 h-32 opacity-20 pointer-events-none ${isFinished ? "bg-linear-to-b from-red-700" : "bg-linear-to-b from-green-700"}`}
+          class={`absolute top-0 left-0 right-0 h-32  ${isFinished ? "bg-linear-to-b from-red-950" : "bg-linear-to-b from-green-950"}`}
         ></div>
 
         <div class="relative flex justify-between items-start">

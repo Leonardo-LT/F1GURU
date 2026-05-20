@@ -10,6 +10,7 @@ import { driverNumberMapping } from "../utility/mapping";
 const db = getFirestore(fApp);
 
 const fetchFavourites = async () => {
+  await getAuth().authStateReady();
   const user = getAuth().currentUser;
   if (user) {
     const res = await getDocs(
@@ -23,8 +24,8 @@ const fetchFavourites = async () => {
   return [];
 };
 
-const isFavourite = (favourites, driver) => {
-  const num = driverNumberMapping[driver];
+const isFavourite = (favourites, driverName) => {
+  const num = driverNumberMapping[driverName];
 
   return favourites().includes(String(num));
 };
@@ -35,39 +36,40 @@ const DriversStandings = () => {
 
   return (
     <>
-      <div class="grid grid-cols-7 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
+      <div class="grid grid-cols-4 md:grid-cols-6 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
         <p class="col-span-1 text-center">STANDING</p>
         <p class="col-span-2 text-center">DRIVER</p>
-        <p class="col-span-1 text-center">TEAM</p>
-        <p class="col-span-1 text-center">POINTS</p>
-        {/* <p class="flex-1">WINS</p> */}
-        <p class="col-span-1 text-center">GRAPH</p>
+        <p class="md:col-span-1 hidden md:block text-center">TEAM</p>
+        <p class="md:col-span-1 hidden md:block text-center">POINTS</p>
+        {/* <p class="sm:col-span-1 hidden sm:block text-center">GRAPH</p>*/}
         <p class="col-span-1 text-center">FOLLOW</p>
       </div>
 
       <Suspense>
-        <For each={standings()}>
-          {(item, index) => {
-            const driver = getDriverFromNumber(item.driver_number);
-            const fav =
-              (favourites() && favourites().length != 0)
-                ? isFavourite(favourites, driver.full_name)
-                : false;
+        <Show when={standings() && favourites()}>
+          <For each={standings()}>
+            {(item, index) => {
+              const driver = getDriverFromNumber(item.driver_number);
+              const fav =
+                favourites() && favourites().length != 0
+                  ? isFavourite(favourites, driver.full_name)
+                  : false;
 
               return (
-              <StandingsCard
-                firstName={driver.full_name}
-                standing={index() + 1}
-                secondName={driver.team_name}
-                points={item.points_current}
-                img={driver.headshot_url}
-                team_color={driver.team_colour}
-                type={true}
-                isFav={fav}
-              />
-            );
-          }}
-        </For>
+                <StandingsCard
+                  firstName={driver.full_name}
+                  standing={index() + 1}
+                  secondName={driver.team_name}
+                  points={item.points_current}
+                  img={driver.headshot_url}
+                  team_color={driver.team_colour}
+                  type={true}
+                  isFav={fav}
+                />
+              );
+            }}
+          </For>
+        </Show>
       </Suspense>
     </>
   );

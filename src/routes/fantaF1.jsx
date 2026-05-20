@@ -20,6 +20,7 @@ import {
   For,
   Suspense,
   createEffect,
+  ErrorBoundary,
 } from "solid-js";
 import CreateJoinModal from "../components/createJoinModal";
 import GroupCard from "../components/groupCard";
@@ -33,6 +34,7 @@ import {
 } from "../utility/fetchDriversStandings";
 import { numberDriverMapping, numberTeamMapping } from "../utility/mapping";
 import GroupMemberCard from "../components/groupMemberCard";
+import { getDriverFromFullName } from "~/utility/getDriversFromTeamName";
 
 const db = getFirestore(fApp);
 
@@ -82,20 +84,28 @@ const fetchGroups = async () => {
   return res;
 };
 
-const calcUserPoints = async (members, driverStandings, teamStandings) => {
-  groupStandings = members.reduce((acc, member) => {
-    const driverPoints = members.drivers.map((driver) => {
-      acc + getDriverPosition(driver, driverStandings).points_current;
-    }, 0);
+const calcMemberPoints = (member, driverStandings, teamStandings) => {
+  if (!member) return 0;
 
-    const teamPoints = members.teams.map((team) => {
-      acc + getTeamStanding(team, teamStandings);
-    }, 0);
+  const DriverStandings = Array.isArray(driverStandings) ? driverStandings : [];
+  const TeamStandings = Array.isArray(teamStandings) ? teamStandings : [];
 
-    {
-      //id: member.id
-    }
-  });
+  const driverPoints = Array.isArray(member.drivers)
+    ? member.drivers.reduce((acc, driver) => {
+        const driverNumber = getDriverFromFullName(driver).driver_number;
+        const standing = getDriverPosition(driverNumber, DriverStandings);
+        return acc + Number(standing?.points_current ?? 0);
+      }, 0)
+    : 0;
+
+  const teamPoints = Array.isArray(member.teams)
+    ? member.teams.reduce((acc, team) => {
+        const standing = getTeamStanding(team, TeamStandings);
+        return acc + Number(standing?.points_current ?? 0);
+      }, 0)
+    : 0;
+
+  return driverPoints + teamPoints;
 };
 
 const checkCurrUser = async () => {
@@ -108,6 +118,8 @@ const FantaF1 = () => {
   const [isCreate, setIsCreate] = createSignal(false);
   const [groups, { refetch, mutate }] = createResource(fetchGroups);
   const [sideGroup, setSideGroup] = createSignal(null);
+  const [driverStandings] = createResource(fetchStandings);
+  const [teamStandings] = createResource(fetchConstructorsStandings);
   const [isLogged, { refetch: loggedRefetch, mutate: loggedMutate }] =
     createResource(checkCurrUser);
 
@@ -157,18 +169,34 @@ const FantaF1 = () => {
               <div class="h-full items-center justify-end hidden text-center sm:flex sm:w-[30%]">
                 <p class="text-center">GROUP IDs</p>
               </div>
-              {/* <div class="w-[5%] "></div>*/}
             </div>
 
             <div class="pt-4 pb-10 overflow-y-auto scroll-smooth h-full flex flex-col gap-4">
-              <Suspense
-                fallback={
-                  <div class="h-full flex items-center justify-center">
-                    <p class="animate-pulse text-xl">Loading your groups...</p>
+              <ErrorBoundary
+                fallback={(err, reset) => (
+                  <div class="h-full flex flex-col items-center justify-center text-gray-500 font-semibold italic gap-3">
+                    <p>Failed to load groups</p>
+                    <button
+                      class="button"
+                      onClick={() => {
+                        refetch();
+                        reset();
+                      }}
+                    >
+                      Try Again
+                    </button>
                   </div>
-                }
+                )}
               >
-                <Show when={groups()}>
+                <Suspense
+                  fallback={
+                    <div class="h-full flex items-center justify-center">
+                      <p class="animate-pulse text-xl">
+                        Loading your groups...
+                      </p>
+                    </div>
+                  }
+                >
                   <For each={groups()}>
                     {(group, idx) => (
                       <GroupCard
@@ -178,12 +206,15 @@ const FantaF1 = () => {
                       />
                     )}
                   </For>
-                </Show>
-              </Suspense>
+                </Suspense>
+              </ErrorBoundary>
 
               <div
                 class="widget min-h-fit flex-1 flex justify-center items-center bg-gray-400/10 hover:bg-black/20 transition-all cursor-pointer"
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  setShowModal(true);
+                  setIsCreate(false);
+                }}
               >
                 <div class="flex flex-col items-center gap-2">
                   <p class="font-bold text-xl">JOIN A GROUP</p>
@@ -210,9 +241,18 @@ const FantaF1 = () => {
                   <span class="text-white font-bold">ID:</span>{" "}
                   {sideGroup() ? sideGroup().id : "nulla"}
                 </h4>
-                <div>
+                <div class="flex flex-col gap-2">
                   <For each={sideGroup().members}>
-                    {(member, idx) => <GroupMemberCard member={member} />}
+                    {(member, idx) => (
+                      <GroupMemberCard
+                        member={member}
+                        points={calcMemberPoints(
+                          member,
+                          driverStandings(),
+                          teamStandings(),
+                        )}
+                      />
+                    )}
                   </For>
                 </div>
               </div>
@@ -221,7 +261,6 @@ const FantaF1 = () => {
 
           <div
             onclick={() => {
-              console.log("click join");
               setShowModal(true);
               setIsCreate(true);
             }}
@@ -236,7 +275,6 @@ const FantaF1 = () => {
 
           <div
             onclick={() => {
-              console.log("click");
               setShowModal(true);
               setIsCreate(false);
             }}

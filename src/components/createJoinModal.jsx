@@ -3,19 +3,27 @@ import { Portal } from "solid-js/web";
 import { driverNumberMapping, teamNumberMapping } from "../utility/mapping";
 import { collection, getFirestore } from "firebase/firestore";
 import { fApp } from "../app";
-import { doc, writeBatch } from "firebase/firestore";
+import { doc, writeBatch, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const db = getFirestore(fApp);
 
 const joinGroup = async (groupId, userName, drivers, teams) => {
+  await getAuth().authStateReady();
   const userId = getAuth().currentUser.uid;
-  const batch = writeBatch(db);
   drivers = drivers.map((driver) => driverNumberMapping[driver]);
   teams = teams.map((team) => teamNumberMapping[team]);
 
-  // controllare se l'utente è già nel gruppo
   const groupMemberRef = doc(db, "groups", groupId, "members", userId);
+
+  const memberSnap = await getDoc(groupMemberRef);
+
+  if (memberSnap.exists()) {
+    throw new Error("Already in this group.");
+  }
+
+  const batch = writeBatch(db);
+
   batch.set(
     groupMemberRef,
     {
@@ -62,7 +70,7 @@ const createGroup = async (groupName, userName, drivers, teams) => {
 };
 
 const CreateJoinModal = (props) => {
-  let buttonText = props.isCreate() ? "Create Group" : "Join Group";
+  const buttonText = () => (props.isCreate() ? "Create Group" : "Join Group");
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
@@ -128,7 +136,8 @@ const CreateJoinModal = (props) => {
             onclick={() => props.setShowModal(false)}
           ></i>
           <h2 class="text-white text-center text-xl font-bold text">
-            CREATE A <span class="text-primary">GROUP</span> AND{" "}
+            {props.isCreate() ? "CREATE" : "JOIN"} A{" "}
+            <span class="text-primary">GROUP</span> AND{" "}
             <span class="text-primary">PICK</span>
           </h2>
           <form

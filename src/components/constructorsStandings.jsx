@@ -11,6 +11,7 @@ import { getDocs, collection, getFirestore } from "firebase/firestore";
 const db = getFirestore(fApp);
 
 const fetchFavourites = async () => {
+  await getAuth().authStateReady();
   const user = getAuth().currentUser;
   if (user) {
     const res = await getDocs(
@@ -20,6 +21,8 @@ const fetchFavourites = async () => {
     const docIds = docs.map((doc) => doc.id);
     return docIds;
   }
+
+  return [];
 };
 
 const isFavourite = (favourites, team) => {
@@ -34,13 +37,12 @@ const ConstructorStandings = () => {
 
   return (
     <>
-      <div class="grid grid-cols-7 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
+      <div class="grid grid-cols-4 md:grid-cols-6 gap-4 items-center my-6 mx-4 w-auto justify-between whitespace-pre place-items-center">
         <p class="col-span-1 text-center">STANDING</p>
         <p class="col-span-2 text-center">TEAM</p>
-        <p class="col-span-1 text-center">DRIVERS</p>
-        <p class="col-span-1 text-center">POINTS</p>
-        {/* <p class="flex-1">WINS</p> */}
-        <p class="col-span-1 text-center">GRAPH</p>
+        <p class="md:col-span-1 hidden md:block text-center">DRIVERS</p>
+        <p class="md:col-span-1 hidden md:block text-center">POINTS</p>
+        {/* <p class="sm:col-span-1 hidden sm:block text-center">GRAPH</p>*/}
         <p class="col-span-1 text-center">FOLLOW</p>
       </div>
       <Suspense>

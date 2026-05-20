@@ -1,5 +1,9 @@
 import { createDateNow } from "@solid-primitives/date";
-import { getNextSession, getNextGrandPrix, getCurrentGrandPrixImage } from "../utility/sessionUtils";
+import {
+  getNextSession,
+  getNextGrandPrix,
+  getCurrentGrandPrixImage,
+} from "../utility/sessionUtils";
 import { createEffect, createMemo, createSignal, Show } from "solid-js";
 
 const NextSession = (props) => {
@@ -19,12 +23,11 @@ const NextSession = (props) => {
 
   createEffect(() => console.log("Image URL:", imageUrl()));
 
-
   return (
     <>
       <div
-        class="next-session widget col-span-12 md:col-span-8 row-start-1 row-span-1 gap-15 h-full bg-cover bg-center"
-        style={{ "backgroundImage": `url(${imageUrl()})` }}
+        class="next-session widget col-span-12 lg:col-span-8 row-start-1 row-span-1 gap-15 h-full bg-cover bg-center"
+        style={`background-image: linear-gradient(rgba(24, 34, 52, 0.7), rgba(24, 34, 52, 0.7)), url('${imageUrl()}');`}
       >
         <div class="h-fit">
           <p class="font-bold text-primary mb-2 text-xs sm:text-lg">
@@ -59,7 +62,8 @@ const NextSession = (props) => {
               </div>
               <div class="time-widget">
                 <span>
-                  {Math.floor((((startTime() - time()) / 1000) % 3600) / 60) % 60}
+                  {Math.floor((((startTime() - time()) / 1000) % 3600) / 60) %
+                    60}
                 </span>
                 <p>MINS</p>
               </div>
@@ -76,27 +80,25 @@ const NextSession = (props) => {
                   {Math.floor(
                     (((startTime() - time()) / 1000) % (3600 * 24)) / 3600,
                   )}{" "}
-                  : {Math.floor((((startTime() - time()) / 1000) % 3600) / 60)} :{" "}
-                  {Math.floor(((startTime() - time()) / 1000) % 60)}
+                  : {Math.floor((((startTime() - time()) / 1000) % 3600) / 60)}{" "}
+                  : {Math.floor(((startTime() - time()) / 1000) % 60)}
                 </span>
                 <p>DAYS HRS MINS SECS</p>
               </div>
             </div>
           </div>
 
-          <button
-            onClick={props.onNotify}
-            class="bg-primary w-22 h-10 rounded-lg hover:bg-primary/50 text-white cursor-pointer"
-          >
+          <button onClick={props.onNotify} class="button">
             Notify
           </button>
         </Show>
 
         <Show when={live()}>
-          <p class="font-extrabold text-7xl animate-pulse text-primary h-full flex flex-col justify-end">LIVE</p>
+          <p class="font-extrabold text-7xl animate-pulse text-primary h-full flex flex-col justify-end">
+            LIVE
+          </p>
         </Show>
       </div>
-
     </>
   );
 };

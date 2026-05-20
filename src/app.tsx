@@ -10,6 +10,7 @@ import {
   initializeFirestore,
   persistentLocalCache,
   persistentMultipleTabManager,
+  getFirestore,
 } from "firebase/firestore";
 import { getApps } from "firebase/app";
 
@@ -26,11 +27,16 @@ const firebaseConfig = {
 const fApp =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-const db = initializeFirestore(fApp, {
-  localCache: persistentLocalCache({
-    tabManager: persistentMultipleTabManager(),
-  }),
-});
+let db;
+try {
+  db = initializeFirestore(fApp, {
+    localCache: persistentLocalCache({
+      tabManager: persistentMultipleTabManager(),
+    }),
+  });
+} catch {
+  db = getFirestore(fApp);
+}
 
 const logOut = (auth) => {
   signOut(auth)
@@ -72,7 +78,7 @@ export default function App() {
             </div>
 
             <main class="text-white flex flex-col items-center w-full min-h-[95vh] lg:max-h-fit">
-              <div class="w-[95vw] h-[95vh] md:w-[90vw] lg:w-[80vw] lg:h-[95vh]">
+              <div class="w-[95vw] min-h-[95vh] md:w-[90vw] lg:w-[80vw] lg:h-[95vh]">
                 <Suspense>{props.children}</Suspense>
               </div>
             </main>

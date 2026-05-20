@@ -12,31 +12,31 @@
 /* Add this to your global CSS file */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px; /* For horizontal scrollbars if you have them */
+    width: 8px;
+    height: 8px; /* For horizontal scrollbars if you have them */
 }
 
 /* 2. Style the track (the background the thumb slides on) */
 ::-webkit-scrollbar-track {
-  background: rgba(31, 41, 55, 0.2); /* Very subtle dark gray/blue */
-  border-radius: 10px;
+    background: rgba(31, 41, 55, 0.2); /* Very subtle dark gray/blue */
+    border-radius: 10px;
 }
 
 /* 3. Style the thumb (the part you actually drag) */
 ::-webkit-scrollbar-thumb {
-  background: #4b5563; /* Tailwind's gray-600 */
-  border-radius: 10px;
+    background: #4b5563; /* Tailwind's gray-600 */
+    border-radius: 10px;
 }
 
 /* 4. Make it slightly lighter when hovering over it */
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280; /* Tailwind's gray-500 */
+    background: #6b7280; /* Tailwind's gray-500 */
 }
 
 /* 5. Fallback for Firefox (Firefox doesn't support ::-webkit) */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #4b5563 transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 transparent;
 }
 
 @theme {
@@ -44,11 +44,10 @@
     --color-widget-bg: #182234;
     --color-widget-border: #2b3b55;
     --color-primary: #0d59f2;
-    --createGroupUrl:url(./createGroupBg.png);
+    --createGroupUrl: url(./createGroupBg.png);
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -57,7 +56,8 @@
         border-color: var(--color-gray-200, currentcolor);
     }
 
-    body {}
+    body {
+    }
 }
 
 @layer components {
@@ -119,5 +119,9 @@
 
     .auth-divider {
         @apply border-t border-widget-border my-6;
+    }
+
+    .button {
+        @apply bg-primary w-22 h-10 rounded-lg hover:bg-primary/50 text-white cursor-pointer;
     }
 }

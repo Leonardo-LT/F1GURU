@@ -2,7 +2,7 @@ const GroupCard = (props) => {
   return (
     <>
       <div
-        class="widget w-full flex flex-row gap-4 justify-between items-center px-4 min-h-fit cursor-pointer"
+        class="widget w-full flex flex-row gap-4 justify-between items-center px-4 min-h-fit cursor-pointer hover:bg-black/20 transition-all"
         onClick={() => props.setGroup(props.group)}
       >
         <div class="w-full sm:w-[40%]">

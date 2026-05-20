@@ -25,7 +25,9 @@ const ConstructorCard = (props) => {
 
         <div class="flex flex-col flex-1 min-w-0">
           <p class="font-semibold text-base truncate">{props.team_name}</p>
-          <p class="text-gray-500 text-sm truncate">{team.driversList.join(" · ")}</p>
+          <p class="text-gray-500 text-sm truncate">
+            {team.driversList.join(" · ")}
+          </p>
         </div>
 
         <p class="shrink-0 font-semibold tabular-nums">{props.points}</p>
