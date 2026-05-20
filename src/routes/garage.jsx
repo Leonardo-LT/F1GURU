@@ -55,10 +55,10 @@ const checkCurrUser = async () => {
 };
 
 export default function Garage() {
-  const [driverFavourites] = createResource(fetchDriverFavourites);
-  const [driverStandings] = createResource(fetchStandings);
-  const [constructorFavourites] = createResource(fetchConstructorrFavourites);
-  const [constructorStandings] = createResource(fetchConstructorsStandings);
+  const [driverFavourites, { refetch: refetchDriverFavs }] = createResource(fetchDriverFavourites);
+  const [driverStandings, { refetch: refetchDriverStandings }] = createResource(fetchStandings);
+  const [constructorFavourites, { refetch: refetchConstructorFavs }] = createResource(fetchConstructorrFavourites);
+  const [constructorStandings, { refetch: refetchConstructorStandings }] = createResource(fetchConstructorsStandings);
   const [isLogged, { refetch: loggedRefetch, mutate: loggedMutate }] =
     createResource(checkCurrUser);
 
@@ -86,7 +86,11 @@ export default function Garage() {
                 <p>Failed to load favourite drivers</p>
                 <button
                   class="button"
-                  onClick={reset}
+                  onClick={() => {
+                    refetchDriverFavs();
+                    refetchDriverStandings();
+                    reset();
+                  }}
                 >
                   Try Again
                 </button>
@@ -145,7 +149,11 @@ export default function Garage() {
                 <p>Failed to load favourite constructors</p>
                 <button
                   class="button"
-                  onClick={reset}
+                  onClick={() => {
+                    refetchConstructorFavs();
+                    refetchConstructorStandings();
+                    reset();
+                  }}
                 >
                   Try Again
                 </button>

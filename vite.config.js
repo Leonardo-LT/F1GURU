@@ -9,6 +9,7 @@ export default defineConfig({
     solidStart({ ssr: false }),
     VitePWA({
       registerType: "prompt",
+      includeAssets: ["favicon.ico"],
       strategies: "injectManifest",
       srcDir: "/",
       filename: "sw.js",

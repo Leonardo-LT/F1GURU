@@ -1,13 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OFFLINE</title>
-</head>
-<body class="h-screen">
-  <main class="h-screen flex justify-center items-center bg-bg">
-    <h1>OFFLINE</h1>
-  </main>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OFFLINE</title>
+        <link rel="icon" href="/favicon.ico" />
+        <style>
+            :root {
+                --bg: #101622;
+                --text: #ffffff;
+            }
+
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                background: var(--bg);
+                color: var(--text);
+            }
+
+            main {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            h1 {
+                animation: pulse 1.8s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    opacity: 0.6;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>OFFLINE</h1>
+        </main>
+        <script>
+            window.addEventListener("online", () => {
+                window.location.reload();
+            });
+        </script>
+    </body>
 </html>

@@ -2,7 +2,7 @@ import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense, createSignal, onMount } from "solid-js";
 import Nav from "~/components/Nav";
-import { MetaProvider, Link, Title } from "@solidjs/meta";
+import { MetaProvider, Title, Link, Meta } from "@solidjs/meta";
 import "./index.css";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -70,8 +70,9 @@ export default function App() {
       root={(props) => (
         <MetaProvider>
           <Title>F1 Guru</Title>
+          <Link rel="icon" href="/favicon.ico" />
           <Link rel="manifest" href="/manifest.webmanifest" />
-          <meta name="theme-color" content="#1f2937" />
+          <Meta name="theme-color" content="#1f2937" />
           <div class="overflow-x-hidden overflow-y-auto bg-bg min-h-screen h-screen lg:h-screen ">
             <div class="h-[5vh]">
               <Nav user={user} auth={auth} logOut={logOut} />

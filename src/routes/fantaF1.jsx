@@ -20,6 +20,7 @@ import {
   For,
   Suspense,
   createEffect,
+  createMemo,
   ErrorBoundary,
 } from "solid-js";
 import CreateJoinModal from "../components/createJoinModal";
@@ -116,10 +117,14 @@ const checkCurrUser = async () => {
 const FantaF1 = () => {
   const [isShowModal, setShowModal] = createSignal(false);
   const [isCreate, setIsCreate] = createSignal(false);
-  const [groups, { refetch, mutate }] = createResource(fetchGroups);
+  const [groups, { refetch: groupsRefetch, mutate: groupsMutate }] =
+    createResource(fetchGroups);
   const [sideGroup, setSideGroup] = createSignal(null);
-  const [driverStandings] = createResource(fetchStandings);
-  const [teamStandings] = createResource(fetchConstructorsStandings);
+  const [driverStandings, { refetch: driversRefetch }] =
+    createResource(fetchStandings);
+  const [teamStandings, { refetch: teamsRefetch }] = createResource(
+    fetchConstructorsStandings,
+  );
   const [isLogged, { refetch: loggedRefetch, mutate: loggedMutate }] =
     createResource(checkCurrUser);
 
@@ -148,6 +153,21 @@ const FantaF1 = () => {
   createEffect(() => {
     setSideGroup(groups() && groups().length > 0 ? groups()[0] : null);
   });
+
+  const sortedMembers = () => {
+    const group = sideGroup();
+    if (!group || !group.members) return [];
+
+    const dStandings = driverStandings();
+    const tStandings = teamStandings();
+
+    const membersWithPoints = group.members.map((member) => ({
+      member,
+      points: calcMemberPoints(member, dStandings, tStandings),
+    }));
+
+    return membersWithPoints.sort((a, b) => b.points - a.points);
+  };
 
   return (
     <div class="py-6 h-full">
@@ -179,7 +199,7 @@ const FantaF1 = () => {
                     <button
                       class="button"
                       onClick={() => {
-                        refetch();
+                        groupsRefetch();
                         reset();
                       }}
                     >
@@ -224,40 +244,55 @@ const FantaF1 = () => {
             </div>
           </div>
 
-          <div class="widget col-span-1 md:col-span-3">
-            <h3 class="font-bold text-xl truncate">
-              {sideGroup() ? sideGroup().groupName : "GROUP"}
-            </h3>
-            <Show
-              when={sideGroup()}
-              fallback={
-                <div class="h-full flex flex-col justify-center p-4 text-center text-gray-500 font-semibold italic">
-                  No group found.
-                </div>
-              }
-            >
-              <div class="flex flex-col gap-4">
-                <h4 class="text-gray-400">
-                  <span class="text-white font-bold">ID:</span>{" "}
-                  {sideGroup() ? sideGroup().id : "nulla"}
-                </h4>
-                <div class="flex flex-col gap-2">
-                  <For each={sideGroup().members}>
-                    {(member, idx) => (
-                      <GroupMemberCard
-                        member={member}
-                        points={calcMemberPoints(
-                          member,
-                          driverStandings(),
-                          teamStandings(),
-                        )}
-                      />
-                    )}
-                  </For>
-                </div>
+          <ErrorBoundary
+            fallback={(err, reset) => (
+              <div class="widget col-span-1 md:col-span-3 h-full flex flex-col items-center justify-center text-gray-500 font-semibold italic gap-3">
+                <p>Failed to load groups</p>
+                <button
+                  class="button"
+                  onClick={() => {
+                    teamsRefetch();
+                    driversRefetch();
+                    reset();
+                  }}
+                >
+                  Try Again
+                </button>
               </div>
-            </Show>
-          </div>
+            )}
+          >
+            <div class="widget col-span-1 md:col-span-3">
+              <h3 class="font-bold text-xl truncate">
+                {sideGroup() ? sideGroup().groupName : "GROUP"}
+              </h3>
+              <Show
+                when={sideGroup()}
+                fallback={
+                  <div class="h-full flex flex-col justify-center p-4 text-center text-gray-500 font-semibold italic">
+                    No group found.
+                  </div>
+                }
+              >
+                <div class="flex flex-col gap-4">
+                  <h4 class="text-gray-400">
+                    <span class="text-white font-bold">ID:</span>{" "}
+                    {sideGroup() ? sideGroup().id : "nulla"}
+                  </h4>
+                  <div class="flex flex-col gap-2">
+                    <For each={sortedMembers()}>
+                      {(item, idx) => (
+                        <GroupMemberCard
+                          member={item.member}
+                          points={item.points}
+                          pos={idx() + 1}
+                        />
+                      )}
+                    </For>
+                  </div>
+                </div>
+              </Show>
+            </div>
+          </ErrorBoundary>
 
           <div
             onclick={() => {
@@ -296,7 +331,7 @@ const FantaF1 = () => {
           setShowModal={setShowModal}
           groups={groups}
           addGroup={mutate}
-          refetch={refetch}
+          refetch={groupsRefetch}
         />
       </Show>
     </div>
