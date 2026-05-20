@@ -42,7 +42,6 @@ const ConstructorStandings = () => {
         <p class="col-span-2 text-center">TEAM</p>
         <p class="md:col-span-1 hidden md:block text-center">DRIVERS</p>
         <p class="md:col-span-1 hidden md:block text-center">POINTS</p>
-        {/* <p class="sm:col-span-1 hidden sm:block text-center">GRAPH</p>*/}
         <p class="col-span-1 text-center">FOLLOW</p>
       </div>
       <Suspense>

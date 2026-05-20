@@ -63,7 +63,6 @@ const StandingsCard = (props) => {
         </p>
 
         <p class="md:col-span-1 hidden md:block">{props.points}</p>
-        {/* <div class="sm:col-span-1 hidden sm:block ">graph</div>*/}
 
         <i
           onClick={() => setFavourite(props.type, props.firstName)}

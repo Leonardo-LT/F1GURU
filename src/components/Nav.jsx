@@ -3,11 +3,6 @@ import { Show, createSignal } from "solid-js";
 
 export default function Nav(props) {
   const [isOpen, setIsOpen] = createSignal(false);
-  // const location = useLocation();
-  // const active = (path) =>
-  //   path == location.pathname
-  //     ? "border-sky-600"
-  //     : "border-transparent hover:border-sky-600";
   return (
     <nav class="overflow-x-auto fixed top-0 left-0 w-screen h-auto bg-bg border-b-2 border-widget-border flex justify-center z-10">
       <div class="relative flex justify-between px-5 md:px-0 w-full lg:w-[80vw] h-full items-center md:justify-center text-white font-semibold text-l">

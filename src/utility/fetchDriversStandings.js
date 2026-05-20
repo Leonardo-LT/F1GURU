@@ -1,5 +1,4 @@
 const fetchStandings = async () => {
-  //throw new Error(`Failed to fetch driver standings (${response.status})`);
   const response = await fetch(
     "https://api.openf1.org/v1/championship_drivers?meeting_key=latest&session_key=latest",
   );
