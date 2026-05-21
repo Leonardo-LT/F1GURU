@@ -1,8 +1,9 @@
 import webpush from "web-push";
 import cron from "node-cron";
 
-const VAPID_SUBJECT =
-  process.env.VAPID_SUBJECT;
+process.loadEnvFile();
+
+const VAPID_SUBJECT = process.env.VAPID_SUBJECT;
 const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
 const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
 
@@ -15,17 +16,16 @@ const scheduler = cron.schedule(
   "* * * * *",
   () => {
     const now = new Date();
-    console.log(now);
 
     savedSubscriptions.forEach((subData) => {
-      console.log(subData)
+      //console.log(subData)
       const timeDiffMs = subData.startTime - now;
       const minutesUntilStart = Math.floor(timeDiffMs / 1000 / 60);
 
       if (minutesUntilStart <= 5) {
         const payload = JSON.stringify({
           title: "Session starting soon",
-          body: `${subData.sessionName} starts in 5 minutes.`,
+          body: `${subData.sessionName} starts in less than 5 minutes.`,
         });
 
         webpush

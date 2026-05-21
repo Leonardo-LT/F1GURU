@@ -15,6 +15,7 @@ export default function Home() {
   const startTime = new Date(nextSession.start);
   const handleNotify = () => {
     try {
+      // const startTime = new Date(Date.now() + 1 * 60 * 1000);
       setNotify(nextSession.name, startTime);
       alert("Notification request received");
     } catch {
